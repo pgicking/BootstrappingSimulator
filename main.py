@@ -24,13 +24,23 @@ def wordlen(text):
     return d
 
 def samplebook(text):
-    minibook = text
-     
+    sample = []
+    i = 25
+    j = 0
+    print text[1]
+    while(j <= i):
+         #sample.extend(text[npr.randint(1,131544)])
+         sample += [text[npr.randint(1,131544)]]
+         j += 1
+    pprint(sample)
 
 def main():
     sweetBook = readbook()
     hissyGram = wordlen(sweetBook)
     pprint(hissyGram)
+    samplebook(sweetBook)
+    i = len(sweetBook)
+    print i 
     print("fuck you book")
 
 main()
