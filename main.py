@@ -5,6 +5,7 @@ from pprint import pprint
 import numpy as np
 import numpy.random as npr
 import pylab
+import random
 
 def readbook():
 #    lines = [line.rstrip('\n').split(' ') for line in open('pg44777.txt')]
@@ -14,7 +15,7 @@ def readbook():
         text.extend(line.split())
     return text 
 
-def wordlen(text):
+def wordLen(text):
     d = {}
     for word in text:
         if len(word) in d:
@@ -23,22 +24,31 @@ def wordlen(text):
             d[len(word)] = 1
     return d
 
-def samplebook(text):
+def samplePop(text):
     sample = []
+    random.shuffle(text)    
     i = 25
     j = 0
-    print text[1]
+    dupe = []
     while(j <= i):
-         #sample.extend(text[npr.randint(1,131544)])
-         sample += [text[npr.randint(1,131544)]]
+         sample += [text[j]]  
          j += 1
-    pprint(sample)
+#    pprint(sample)
+    return sample
+
+def subSample(text):
+    idx = npr.randint(1,len(text),(len(text)))
+    subSample = []
+    for i in idx:
+        subSample.append(text[i])
+    print subSample
+    return subSample 
 
 def main():
     sweetBook = readbook()
-    hissyGram = wordlen(sweetBook)
-    pprint(hissyGram)
-    samplebook(sweetBook)
+    hissyGram = wordLen(sweetBook)
+    sample = samplePop(sweetBook)
+    subSample(sample)
     i = len(sweetBook)
     print i 
     print("fuck you book")
