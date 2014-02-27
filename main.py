@@ -12,8 +12,8 @@ import numpy as np
 import numpy.random as npr
 import pylab
 import random
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
+import matplotlib as plt
+from matplotlib import pyplot
 
 
 #Reads the text from our book and stores each word in a list
@@ -58,17 +58,25 @@ def subSample(text):
     print subSample
     return subSample
 
+#creates a histogram of the dictionary passed in
 def histoGram(d):
-    #tup = []
-    #convert a dictionary to a list of tuples
-    #tup = [(v,k) for k,v in d.iteritems()]
-    plt.bar(d.keys(), d.values(), align='center')
-    #fig = plt.figure()
-    #fig.savefig('foo.png', format='PNG' )
-    #pp = PdfPages('foo.pdf')
-    #pp.savefig(fig)
-    #pp.close()
-
+    pyplot.bar(d.keys(), d.values())
+    pyplot.title( 'Bootstrapping')
+    pyplot.xlabel( 'Word length' )
+    pyplot.ylabel ( 'Number of Occurences' )
+    pyplot.savefig( 'foo.png' )
+    pyplot.show()
+    
+def test():
+    X = range(0,100)
+    Y = [ i*i for i in X ]
+    
+    pyplot.plot(X,Y, '-')
+    pyplot.title( 'Plotting x*x' )
+    pyplot.xlabel( 'X Axis' )
+    pyplot.ylabel( 'Y Axis' )
+    pyplot.savefig( 'Simple.png' )
+    pyplot.show()
 
 #Main function
 def main():
