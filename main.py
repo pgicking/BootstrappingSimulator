@@ -35,6 +35,7 @@ def wordLen(text):
             d[len(word)] = 1
     return d
 
+#calculates the average of the dictionary
 def calcAvg(d):
     i = 0.0
     j = 0.0
@@ -65,7 +66,7 @@ def subSample(text):
     subSample = []
     for i in idx:
         subSample.append(text[i])
-    print subSample
+#    print subSample
     return subSample
 
 #creates a histogram of the dictionary passed in
@@ -101,7 +102,7 @@ def main():
         bootStrap = subSample(sample)
         words = wordLen(bootStrap)
         avg = calcAvg(words)
-        round(avg)
+        avg = round(avg)
         if avg in d:
             d[avg] += 1
         else:
