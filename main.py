@@ -81,6 +81,7 @@ def histogram(d,name):
     pyplot.xlabel( 'Word length' )
     pyplot.ylabel ( 'Number of Occurences' )
     pyplot.savefig( 'Bootstrap_' + name + '.pdf' )
+    pyplot.close()
 #    pyplot.show()
 
 def csvWriter(name,d):    
