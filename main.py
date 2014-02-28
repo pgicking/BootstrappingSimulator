@@ -75,12 +75,14 @@ def subSample(text):
     return subSample
 
 #creates a histogram of the dictionary passed in
-def histogram(d,name):
+def histogram(d,name,sample,boot):
     pyplot.bar(d.keys(), d.values())
-    pyplot.title( 'Bootstrapping - ' + name )
+    pyplot.title( 'Bootstrapping - ' + name + '\nSample Size: ' + str(sample) + 
+            '\nBootstrap Amount: ' + str(boot))
     pyplot.xlabel( 'Word length' )
     pyplot.ylabel ( 'Number of Occurences' )
     pyplot.savefig( 'Bootstrap_' + name + '.pdf' )
+#    pyplot.figtext(.5,.9,'Sample Size: ' + str(sample) + ' Bootstrap Amount: ' + str(boot))
     pyplot.close()
 #    pyplot.show()
 
@@ -101,7 +103,9 @@ def main():
     #Sort by word length and store in popHist
     popHist = wordLen(pop)
     #Creates the population histogram
-    histogram(popHist,name)
+    sampleSize = 131455
+    bootstrap = 0
+    histogram(popHist,name,sampleSize,bootstrap)
     print '\nCreating Histogram of the Population\n'
     
     #write pop as a csv 
@@ -137,7 +141,7 @@ def main():
  
     #Create a new graph with the name SubSample
     name = 'SubSample'
-    histogram(d,name) 
+    histogram(d,name,sampleNum,bootNum) 
     csvWriter(name,d)       
     print d
 
