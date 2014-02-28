@@ -81,7 +81,7 @@ def histogram(d,name,sample,boot):
             '   Bootstrap Amount: ' + str(boot))
     pyplot.xlabel( 'Word length' )
     pyplot.ylabel ( 'Number of Occurences' )
-    pyplot.savefig( 'Bootstrap_' + name + '.pdf' )
+    pyplot.savefig( 'Bootstrap_' + name + '_' + str(sample) + '_' + str(boot) + '.pdf' )
 #    pyplot.figtext(.5,.9,'Sample Size: ' + str(sample) + ' Bootstrap Amount: ' + str(boot))
     pyplot.close()
 #    pyplot.show()
