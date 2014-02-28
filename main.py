@@ -21,6 +21,10 @@ def readBook():
     f = open('pg44777.txt', 'r')
     text = []
     for line in f:
+        #Strips out all punctuation
+        line = re.sub(r'[\'|,|(|)|;|\"|:|.]','',line)
+        #Special case where hyphenated words need spaces inbetween them
+        line = re.sub(r'[--]', ' ',line)
         text.extend(line.split())
     return text
 
@@ -35,7 +39,7 @@ def wordLen(text):
             d[len(word)] = 1
     return d
 
-#calculates the average of the dictionary
+#calculates the average of the values in the dictionary
 def calcAvg(d):
     i = 0.0
     j = 0.0
@@ -60,7 +64,7 @@ def samplePop(text,sampleSize):
     return sample
 
 #Takes a subsample from the text to be iterated over
-#Creates random numbers, then goes to the index to stores it
+#Creates random numbers, then goes to index i in text and stores it
 def subSample(text):
     idx = npr.randint(1,len(text),(len(text)))
     subSample = []
@@ -89,14 +93,24 @@ def main():
     #Creates the population histogram
     #histogram(popHist,name)
     print '\nCreating Histogram of the Population\n'
-   
+  
+    #Gets the size of the sample the user wants from the population 
     sampleNum = int(raw_input("\nHow big of a subsample would you like?:"))
     sample = samplePop(pop,sampleNum)    
+
+    #Gets the amount of times the user wants to re-sample over the sample.
+    #Higher the number, the more accurate the closer you are to the real population distribution
     bootNum = int(raw_input("\nHow many times would you like to bootstrap?:"))
     i = 0
     j = bootNum
     bootStrap = {}
     d = {}
+    #The bootstrapping loop. 
+    #Takes a subsample from the sample population. 
+    #Creates a dictionary of the word length values
+    #Calculates the average of those values
+    #Stores the average value in a new dictionary
+    #Repeat j times
     while(i < j):
         i += 1        
         bootStrap = subSample(sample)
@@ -107,10 +121,11 @@ def main():
             d[avg] += 1
         else:
             d[avg] = 1
+    
+    #Create a new graph with the name SubSample
     name = 'SubSample'
     histogram(d,name)        
     print d
-    print("fuck")
 
 #Executes main
 main()
