@@ -7,6 +7,7 @@
 
 
 import re
+import csv
 from pprint import pprint
 import numpy as np
 import numpy.random as npr
@@ -81,7 +82,15 @@ def histogram(d,name):
     pyplot.ylabel ( 'Number of Occurences' )
     pyplot.savefig( 'Bootstrap_' + name + '.pdf' )
 #    pyplot.show()
-    
+
+def csvWriter(name,d):    
+    with open(name + '.csv', 'w') as fp:
+        dictlist = []
+        for key,value in d.iteritems():
+            temp = [key,value]
+            dictlist.append(temp)
+        a = csv.writer(fp, delimiter=',')
+        a.writerows(dictlist)    
 
 #Main function
 def main():
@@ -91,9 +100,12 @@ def main():
     #Sort by word length and store in popHist
     popHist = wordLen(pop)
     #Creates the population histogram
-    #histogram(popHist,name)
+    histogram(popHist,name)
     print '\nCreating Histogram of the Population\n'
-  
+    
+    #write pop as a csv 
+    csvWriter(name,popHist)
+
     #Gets the size of the sample the user wants from the population 
     sampleNum = int(raw_input("\nHow big of a subsample would you like?:"))
     sample = samplePop(pop,sampleNum)    
@@ -121,10 +133,11 @@ def main():
             d[avg] += 1
         else:
             d[avg] = 1
-    
+ 
     #Create a new graph with the name SubSample
     name = 'SubSample'
-    histogram(d,name)        
+    histogram(d,name) 
+    csvWriter(name,d)       
     print d
 
 #Executes main
