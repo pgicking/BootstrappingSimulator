@@ -78,7 +78,7 @@ def subSample(text):
 def histogram(d,name,sample,boot):
     pyplot.bar(d.keys(), d.values())
     pyplot.title( 'Bootstrapping - ' + name + '\nSample Size: ' + str(sample) + 
-            '\nBootstrap Amount: ' + str(boot))
+            '   Bootstrap Amount: ' + str(boot))
     pyplot.xlabel( 'Word length' )
     pyplot.ylabel ( 'Number of Occurences' )
     pyplot.savefig( 'Bootstrap_' + name + '.pdf' )
