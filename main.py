@@ -82,10 +82,10 @@ def histogram(d,name,sample,boot):
     pyplot.xlabel( 'Word length' )
     pyplot.ylabel ( 'Number of Occurences' )
     pyplot.savefig( 'Bootstrap_' + name + '_' + str(sample) + '_' + str(boot) + '.pdf' )
-#    pyplot.figtext(.5,.9,'Sample Size: ' + str(sample) + ' Bootstrap Amount: ' + str(boot))
     pyplot.close()
 #    pyplot.show()
 
+#Converts the data into a csv readable output 
 def csvWriter(name,d):    
     with open(name + '.csv', 'w') as fp:
         dictlist = []
