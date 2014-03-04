@@ -86,8 +86,8 @@ def histogram(d,name,sample,boot):
 #    pyplot.show()
 
 #Converts the data into a csv readable output 
-def csvWriter(name,d):    
-    with open(name + '.csv', 'w') as fp:
+def csvWriter(name,d,sample,boot):    
+    with open(name + '_' + str(sample) + '_' + str(boot) + '.csv', 'w') as fp:
         dictlist = []
         for key,value in d.iteritems():
             temp = [key,value]
@@ -109,7 +109,7 @@ def main():
     print '\nCreating Histogram of the Population\n'
     
     #write pop as a csv 
-    csvWriter(name,popHist)
+    csvWriter(name,popHist,sampleSize,bootstrap)
 
     #Gets the size of the sample the user wants from the population 
     sampleNum = int(raw_input("\nHow big of a subsample would you like?:"))
@@ -142,7 +142,7 @@ def main():
     #Create a new graph with the name SubSample
     name = 'SubSample'
     histogram(d,name,sampleNum,bootNum) 
-    csvWriter(name,d)       
+    csvWriter(name,d,sampleNum,bootNum)       
     print d
 
 #Executes main
